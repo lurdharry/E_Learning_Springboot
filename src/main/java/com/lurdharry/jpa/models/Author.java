@@ -1,17 +1,21 @@
 package com.lurdharry.jpa.models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+
+
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
-@Data
-@NoArgsConstructor
 @Entity
-@Table(
-        name = "AUTHOR_DBL"
-)
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Author {
 
     @Id
@@ -34,15 +38,7 @@ public class Author {
 
     private Integer age;
 
-    @Column(
-            updatable = false,
-             nullable = false
-    )
-    private LocalDateTime createdAt;
-
-    @Column(
-            insertable = false
-    )
-    private LocalDateTime lastModified;
+    @ManyToMany(mappedBy = "authors")
+    private List<Course> courses;
 
 }
