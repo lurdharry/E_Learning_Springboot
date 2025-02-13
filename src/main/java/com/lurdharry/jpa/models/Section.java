@@ -1,23 +1,20 @@
 package com.lurdharry.jpa.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
-@Builder
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Section {
+public class Section extends BaseEntity {
 
-    @Id
-    @GeneratedValue
-    private Integer id;
+
 
     private String name;
 

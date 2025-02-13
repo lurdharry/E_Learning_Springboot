@@ -1,26 +1,24 @@
 package com.lurdharry.jpa.models;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToMany;
 import lombok.AllArgsConstructor;
-
-
-import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
-@Entity
+
+@EqualsAndHashCode(callSuper = true)
 @Data
-@Builder
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Author {
-
-    @Id
-    @GeneratedValue
-    private Integer id;
+@Entity
+public class Author extends BaseEntity {
 
     @Column(
             name = "f_name",
