@@ -1,12 +1,7 @@
 package com.lurdharry.jpa.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToMany;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import java.util.List;
@@ -18,6 +13,17 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@NamedQueries({
+        @NamedQuery(
+                name = "Author.findByNamedQuery",
+                query = "select a from Author a where a.age >= :age"
+        ),
+        @NamedQuery(
+                name = "Author.updateByNamedQuery",
+                query = "update Author a set a.age = :age"
+        )
+})
+
 public class Author extends BaseEntity {
 
     @Column(
@@ -37,6 +43,7 @@ public class Author extends BaseEntity {
     private Integer age;
 
     @ManyToMany(mappedBy = "authors")
+    @ToString.Exclude
     private List<Course> courses;
 
 }
